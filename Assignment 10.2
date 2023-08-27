@@ -1,0 +1,20 @@
+name = input("Enter file:")
+if len(name) < 1:
+    name = "mbox-short.txt"
+    
+handle = open(name)
+counts = tuple()
+
+
+dict_h = dict()
+
+for line in handle:
+    if line.startswith('From '):
+        items = line.split()
+        items2 = items[5].split(":")
+        #print(items2)
+        dict_h[items2[0]]=dict_h.get(items2[0],0)+1 
+
+counts=sorted(dict_h.items())
+for k,v in counts:
+    print(k,v)
